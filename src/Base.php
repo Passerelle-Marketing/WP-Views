@@ -38,15 +38,6 @@ class Base {
 		echo $this->get_image($field, $sizes, $class, $wp_size);
 	}
 
-	public function get_markup($field) {
-		$function_name = "get_markup_$field";
-		return $this->$function_name();
-	}
-
-	public function put_markup($field) {
-		echo $this->get_markup($field);
-	}
-
 	public function get_set($field, $args = []) {
 		$function_name = "get_set_$field";
 	    $array = $this->$function_name($args);
@@ -56,7 +47,7 @@ class Base {
 		return array();
 	}
 
-	protected function get_image_markup($id, $sizes = '', $class = '', $wp_size = '') {
+	protected static function get_image_markup($id, $sizes = '', $class = '', $wp_size = '') {
 		$output = '<img ';
 		$output .= 'srcset="' . wp_get_attachment_image_srcset($id, $wp_size) . '" ';
 		$output .= 'src="' . wp_get_attachment_image_url($id, $wp_size) . '" ';
@@ -67,7 +58,7 @@ class Base {
 		return $output;
 	}
 
-	public static function get_subsections_from_acf_repeater($field, $view_id, $class_name) {
+	protected static function get_subsections_from_acf_repeater($field, $view_id, $class_name) {
 	    $acf_array = get_field($field, $view_id);
 	    if($acf_array) {
 	      $sections = array_map(function($section) {
