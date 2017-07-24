@@ -9,21 +9,32 @@ class Post extends View {
 	public function __construct($post) {
 		$this->id = $post->ID;
 	}
+
 	protected function get_slug() {
 		return get_post_field( 'post_name', $this->id );
 	}
+
 	protected function get_title() {
 		return get_the_title($this->id);
 	}
+
 	protected function get_template() {
 		$slug = get_page_template_slug($this->id);
 		$slug = preg_replace('/^template-/', '', $slug);
 		$slug = preg_replace('/.php$/', '', $slug);
 		return $slug;
 	}
+
 	protected function get_url() {
 		return get_permalink($this->id);
 	}
+
+	protected function get_parent() {
+		$post_type = $this->get_post_type();
+		$post_type_object = get_post_type_object($post_type);
+		return new Archive($post_type_object);
+	}
+
 	protected function get_image_featured($sizes = '', $class = '', $wp_size = '') {
 		$imageId = get_post_thumbnail_id($this->id);
 		if ($imageId) {
