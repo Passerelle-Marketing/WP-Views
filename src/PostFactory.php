@@ -19,7 +19,7 @@ class PostFactory extends BaseFactory {
 		$template_label = self::get_template_label( $post->ID );
 		$post_string = "Post" . $type_label . $template_label;
 
-		return $this->get_namespaced_classname($namespace, $post_string);
+		return self::get_namespaced_classname($namespace, $post_string);
 	}
 
 	private static function get_label_string($slug) {
