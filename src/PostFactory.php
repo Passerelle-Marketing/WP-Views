@@ -3,7 +3,7 @@
 namespace DaveJToews\WPViews\Classes;
 use DaveJToews\WPViews\Helpers;
 
-class PostFactory {
+class PostFactory extends BaseFactory {
 
 	public static function create($post) {
 		if ($post) {
@@ -11,15 +11,15 @@ class PostFactory {
 			return new $view_class($post);
 		}
 		return false;
-
 	}
 
 	private static function get_view_class($post) {
 		$post_type = get_post_type($post);
 		$type_label = ($post_type === 'post') ? 'Blog' : self::get_label_string($post_type);
 		$template_label = self::get_template_label( $post->ID );
+		$post_string = "Post" . $type_label . $template_label;
 
-		return __NAMESPACE__ . "\Post" . $type_label . $template_label;
+		return $this->get_namespaced_classname($namespace, $post_string);
 	}
 
 	private static function get_label_string($slug) {
