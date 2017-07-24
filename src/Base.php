@@ -10,10 +10,13 @@ class Base {
 
 		return $this->$function_name();
 	}
+
 	public function has($field) {
 		$function_name = "has_$field";
-
-		return $this->$function_name();
+		if (method_exists($this, "has_$field")) {
+			return $this->$function_name();
+		}
+		return false;
 	}
 
 	public function put($field) {
@@ -24,11 +27,13 @@ class Base {
 			echo "<pre>Cannot put $field, use get instead.</pre>";
 		}
 	}
+
 	public function get_image($field, $sizes = '', $class = '', $wp_size = '' ) {
 		$function_name = "get_image_$field";
 
 		return $this->$function_name($sizes, $class, $wp_size);
 	}
+
 	public function put_image($field, $sizes = '', $class = '', $wp_size = '' ) {
 		echo $this->get_image($field, $sizes, $class, $wp_size);
 	}
@@ -44,10 +49,10 @@ class Base {
 
 	public function get_set($field, $args = []) {
 		$function_name = "get_set_$field";
-    $array = $this->$function_name($args);
-    if ($array) {
-      return array_filter($array);
-    }
+	    $array = $this->$function_name($args);
+	    if ($array) {
+	      return array_filter($array);
+	    }
 		return array();
 	}
 
