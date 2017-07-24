@@ -11,4 +11,8 @@ class SubSection extends Base {
 		$this->fields = $fields;
 		$this->field_prefix = $field_prefix;
 	}
+
+	protected function get_field($field, $id = null) {
+		return get_field($this->field_prefix . $field, $id);
+	}
 }
