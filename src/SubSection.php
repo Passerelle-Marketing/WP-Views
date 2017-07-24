@@ -1,5 +1,5 @@
 <?php
-namespace Passerelle\Karoleena\Classes;
+namespace DaveJToews\WPViews\Classes;
 
 class SubSection extends Base {
 	public $parent_id;

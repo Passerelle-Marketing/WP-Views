@@ -1,8 +1,8 @@
 <?php
 
-namespace Passerelle\Karoleena\Classes;
+namespace DaveJToews\WPViews\Classes;
 
-Use Passerelle\Karoleena\Helpers;
+Use DaveJToews\WPViews\Helpers;
 
 class Base {
 	public function get($field) {

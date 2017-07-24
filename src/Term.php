@@ -1,6 +1,6 @@
 <?php
 
-namespace Passerelle\Karoleena\Classes;
+namespace DaveJToews\WPViews\Classes;
 class Term extends Base {
 
   public $name;

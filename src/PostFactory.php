@@ -1,7 +1,7 @@
 <?php
 
-namespace Passerelle\Karoleena\Classes;
-use Passerelle\Karoleena\Helpers;
+namespace DaveJToews\WPViews\Classes;
+use DaveJToews\WPViews\Helpers;
 
 class PostFactory {
 

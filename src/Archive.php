@@ -1,6 +1,6 @@
 <?php
 
-namespace Passerelle\Karoleena\Classes;
+namespace DaveJToews\WPViews\Classes;
 
 class Archive extends Base {
 
@@ -22,7 +22,7 @@ class ArchiveFeed extends Subsection {
   protected function get_set_articles() {
     global $wp_query;
 
-    return array_map(array('Passerelle\Karoleena\Classes\PostFactory', 'create'), $wp_query->posts);
+    return array_map(array('DaveJToews\WPViews\Classes\PostFactory', 'create'), $wp_query->posts);
   }
 
 }
