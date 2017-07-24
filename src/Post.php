@@ -2,7 +2,7 @@
 
 namespace DaveJToews\WPViews\Classes;
 
-class Post extends Base {
+class Post extends View {
 
 	public $id;
 

@@ -2,7 +2,7 @@
 
 namespace DaveJToews\WPViews\Classes;
 
-class Archive extends Base {
+class Archive extends View {
 
   public $type;
   public $page;
