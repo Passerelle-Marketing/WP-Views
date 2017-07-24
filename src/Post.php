@@ -1,6 +1,6 @@
 <?php
 
-namespace DaveJToews\WPViews\Classes;
+namespace DaveJToews\WPViews;
 
 class Post extends View {
 

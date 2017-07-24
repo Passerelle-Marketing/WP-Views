@@ -1,6 +1,6 @@
 <?php
 
-namespace DaveJToews\WPViews\Classes;
+namespace DaveJToews\WPViews;
 
 class Archive extends View {
 
@@ -21,6 +21,6 @@ class Archive extends View {
   protected function get_set_articles() {
     global $wp_query;
 
-    return array_map(array('DaveJToews\WPViews\Classes\PostFactory', 'create'), $wp_query->posts);
+    return array_map(array('DaveJToews\WPViews\PostFactory', 'create'), $wp_query->posts);
   }
 }
