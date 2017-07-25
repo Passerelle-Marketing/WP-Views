@@ -5,21 +5,21 @@ use DaveJToews\WPViews\Helpers;
 
 class PostFactory extends BaseFactory {
 
-	public static function create($post) {
+	public static function create($post, $namespace = null) {
 		if ($post) {
-			$view_class = self::get_view_class($post);
+			$view_class = self::get_view_class($post, $namespace);
 			return new $view_class($post);
 		}
 		return false;
 	}
 
-	private static function get_view_class($post) {
+	private static function get_view_class($post, $namespace) {
 		$post_type = get_post_type($post);
 		$type_label = ($post_type === 'post') ? 'Blog' : self::get_label_string($post_type);
 		$template_label = self::get_template_label( $post->ID );
 		$post_string = "Post" . $type_label . $template_label;
 
-		return self::get_namespaced_classname($namespace, $post_string);
+		return self::get_namespaced_classname($post_string, $namespace);
 	}
 
 	private static function get_label_string($slug) {
