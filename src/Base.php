@@ -1,37 +1,46 @@
-<?php
+, $object = null<?php
 
 namespace DaveJToews\WPViews;
 
 Use DaveJToews\WPViews\Helpers;
 
 class Base {
-	public function get($field) {
-		$function_name = "get_$field";
+	public function get($field, $object = null) {
+		$method_name = "get_$field";
 
-		return $this->$function_name();
+		if ($object && method_exists($object, $method_name)) {
+			return $object->$method_name();
+		}
+
+		return $this->$method_name();
 	}
 
-	public function has($field) {
-		$function_name = "has_$field";
-		if (method_exists($this, "has_$field")) {
-			return $this->$function_name();
+	public function has($field, $object = null) {
+		$method_name = "has_$field";
+
+		if ($object && method_exists($object, $method_name)) {
+			return $object->$method_name();
+		} elseif (method_exists($this, $method_name)) {
+			return $this->$method_name();
 		}
+
 		return false;
 	}
 
-	public function put($field) {
-		$output = $this->get($field);
-		if (Helpers\canBeString($output)) {
-			echo $this->get($field);
+	public function put($field, $object = null) {
+		$output = $this->get($field, $object);
+
+		if (Helpers\can_be_string($output)) {
+			echo $this->get($field, $object);
 		} else {
 			echo "<pre>Cannot put $field, use get instead.</pre>";
 		}
 	}
 
 	public function get_image($field, $sizes = '', $class = '', $wp_size = '' ) {
-		$function_name = "get_image_$field";
+		$method_name = "get_image_$field";
 
-		return $this->$function_name($sizes, $class, $wp_size);
+		return $this->$method_name($sizes, $class, $wp_size);
 	}
 
 	public function put_image($field, $sizes = '', $class = '', $wp_size = '' ) {
@@ -39,8 +48,8 @@ class Base {
 	}
 
 	public function get_set($field, $args = []) {
-		$function_name = "get_set_$field";
-	    $array = $this->$function_name($args);
+		$method_name = "get_set_$field";
+	    $array = $this->$method_name($args);
 	    if ($array) {
 	      return array_filter($array);
 	    }

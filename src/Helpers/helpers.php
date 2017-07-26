@@ -1,7 +1,7 @@
 <?php 
 namespace DaveJToews\WPViews\Helpers;
 
-function canBeString($value) {
+function can_be_string($value) {
     if (is_object($value) and method_exists($value, '__toString')) return true;
     if (is_null($value)) return true;
     return is_scalar($value);
