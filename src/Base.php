@@ -75,7 +75,7 @@ class Base {
 		return array();
 	}
 
-	protected static function get_image_markup($id, $args) {
+	public static function get_image_markup($id, $args) {
 		$sizes = $args['sizes'];
 		$class = $args['class'];
 		$wp_size = $args['wp_size'];
