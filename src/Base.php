@@ -62,8 +62,8 @@ class Base {
 		);
 	}
 
-	public function put_image($field, $args ) {
-		echo $this->get_image($field, $args);
+	public function put_image($field, $args, $object = null ) {
+		echo $this->get_image($field, $args, $object);
 	}
 
 	public function get_set($field, $args = []) {
