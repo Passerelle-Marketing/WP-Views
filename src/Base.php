@@ -1,4 +1,4 @@
-, $object = null<?php
+<?php
 
 namespace DaveJToews\WPViews;
 
