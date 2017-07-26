@@ -37,11 +37,21 @@ class Base {
 		}
 	}
 
-	public function get_image( $field, $args = [] ) {
+	public function get_image( $field, $args = [], $object = null ) {
 		$method_name = "get_image_$field";
 		$sizes = (!empty($args['sizes'])) ? $args['sizes'] : '';
 		$class = (!empty($args['class'])) ? $args['class'] : '';
 		$wp_size = (!empty($args['wp_size'])) ? $args['wp_size'] : '';
+
+		if ($object && method_exists($object, $method_name)) {
+			return $object->$method_name(
+				array(
+					'sizes'	=> $sizes,
+					'class' => $class,
+					'wp_size' => $wp_size
+				)
+			);
+		}		
 
 		return $this->$method_name(
 			array(
