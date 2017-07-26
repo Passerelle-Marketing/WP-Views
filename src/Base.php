@@ -37,14 +37,23 @@ class Base {
 		}
 	}
 
-	public function get_image($field, $sizes = '', $class = '', $wp_size = '' ) {
+	public function get_image( $field, $args = [] ) {
 		$method_name = "get_image_$field";
+		$sizes = (!empty($args['sizes'])) ? $args['sizes'] : '';
+		$class = (!empty($args['class'])) ? $args['class'] : '';
+		$wp_size = (!empty($args['wp_size'])) ? $args['wp_size'] : '';
 
-		return $this->$method_name($sizes, $class, $wp_size);
+		return $this->$method_name(
+			array(
+				'sizes'	=> $sizes,
+				'class' => $class,
+				'wp_size' => $wp_size
+			)
+		);
 	}
 
-	public function put_image($field, $sizes = '', $class = '', $wp_size = '' ) {
-		echo $this->get_image($field, $sizes, $class, $wp_size);
+	public function put_image($field, $args ) {
+		echo $this->get_image($field, $args);
 	}
 
 	public function get_set($field, $args = []) {
@@ -56,7 +65,11 @@ class Base {
 		return array();
 	}
 
-	protected static function get_image_markup($id, $sizes = '', $class = '', $wp_size = '') {
+	protected static function get_image_markup($id, $args) {
+		$sizes = $args['sizes'];
+		$class = $args['class'];
+		$wp_size = $args['wp_size'];
+
 		$output = '<img ';
 		$output .= 'srcset="' . wp_get_attachment_image_srcset($id, $wp_size) . '" ';
 		$output .= 'src="' . wp_get_attachment_image_url($id, $wp_size) . '" ';
