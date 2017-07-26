@@ -35,10 +35,10 @@ class Post extends View {
 		return new Archive($post_type_object);
 	}
 
-	protected function get_image_featured($sizes = '', $class = '', $wp_size = '') {
+	protected function get_image_featured($args) {
 		$imageId = get_post_thumbnail_id($this->id);
 		if ($imageId) {
-			return $this->get_image_markup($imageId, $sizes, $class, $wp_size);
+			return $this->get_image_markup($imageId, $args);
 		} else {
 			return false;
 		}
