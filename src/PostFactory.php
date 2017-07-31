@@ -3,7 +3,7 @@
 namespace DaveJToews\WPViews;
 use DaveJToews\WPViews\Helpers;
 
-class PostFactory extends BaseFactory {
+class PostFactory extends Factory {
 
 	public static function create($post, $namespace = null) {
 		if ($post) {

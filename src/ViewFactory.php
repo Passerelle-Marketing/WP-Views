@@ -2,7 +2,7 @@
 
 namespace DaveJToews\WPViews;
 
-class ViewFactory extends BaseFactory {
+class ViewFactory extends Factory {
 
   public static function create($namespace = null) {
 

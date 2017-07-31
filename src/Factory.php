@@ -2,7 +2,7 @@
 
 namespace DaveJToews\WPViews;
 
-class BaseFactory {
+class Factory {
 
   protected static function get_namespaced_classname($classname, $namespace) {
     if ($namespace && class_exists($namespace . '\\' . $classname)) {
