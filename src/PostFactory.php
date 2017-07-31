@@ -6,11 +6,8 @@ use DaveJToews\WPViews\Helpers;
 class PostFactory extends Factory {
 
 	public static function create($post, $namespace = null) {
-		if ($post) {
-			$view_class = self::get_view_class($post, $namespace);
-			return new $view_class($post);
-		}
-		return false;
+		$view_class = self::get_view_class($post, $namespace);
+		return new $view_class($post);
 	}
 
 	private static function get_view_class($post, $namespace) {

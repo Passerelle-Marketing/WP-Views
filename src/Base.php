@@ -33,7 +33,7 @@ class Base {
 		if (Helpers\can_be_string($output)) {
 			echo $this->get($field, $object);
 		} else {
-			echo "<pre>Cannot put $field, use get instead.</pre>";
+			throw new \Exception("Cannot put $field, use get instead.");
 		}
 	}
 
@@ -72,7 +72,7 @@ class Base {
 	    if ($array) {
 	      return array_filter($array);
 	    }
-		return array();
+		throw new \Exception("Set $field not found.");
 	}
 
 	public static function get_image_markup($id, $args) {
@@ -98,6 +98,6 @@ class Base {
 	      }, $acf_array);
 	      return $sections;
 	    }
-	    return array();
+	   throw new \Exception("ACF field $field not found.");
 	}
 }

@@ -40,7 +40,7 @@ class Post extends View {
 		if ($imageId) {
 			return $this->get_image_markup($imageId, $args);
 		} else {
-			return false;
+			throw new \Exception('Post does not have featured image.');
 		}
 	}
 
