@@ -6,13 +6,13 @@ class SubSection extends Base {
 	public $fields;
 	public $field_prefix;
 
-	public function __construct($parent_id = false, $fields = [], $field_prefix = '') {
+	public function __construct(int $parent_id = false, array $fields = [], string $field_prefix = '') {
 		$this->parent_id = $parent_id;
 		$this->fields = $fields;
 		$this->field_prefix = $field_prefix;
 	}
 
-	protected function get_field($field, $id = null) {
+	protected function get_field(string $field, int $id = null) {
 		return get_field($this->field_prefix . $field, $id);
 	}
 }

@@ -5,7 +5,7 @@ namespace DaveJToews\WPViews;
 Use DaveJToews\WPViews\Helpers;
 
 class Base {
-	public function get($field, $object = null) {
+	public function get(string $field, ExternalObjectInterface $object = null) {
 		$method_name = "get_$field";
 
 		if ($object && method_exists($object, $method_name)) {
@@ -15,7 +15,7 @@ class Base {
 		return $this->$method_name();
 	}
 
-	public function has($field, $object = null) {
+	public function has(string $field, ExternalObjectInterface $object = null) {
 		$method_name = "has_$field";
 
 		if ($object && method_exists($object, $method_name)) {
@@ -27,7 +27,7 @@ class Base {
 		return false;
 	}
 
-	public function put($field, $object = null) {
+	public function put(string $field, ExternalObjectInterface $object = null) {
 		$output = $this->get($field, $object);
 
 		if (Helpers\can_be_string($output)) {
@@ -37,7 +37,7 @@ class Base {
 		}
 	}
 
-	public function get_image( $field, $args = [], $object = null ) {
+	public function get_image(string $field, array $args = [], ExternalObjectInterface $object = null ) {
 		$method_name = "get_image_$field";
 		$sizes = (!empty($args['sizes'])) ? $args['sizes'] : '';
 		$class = (!empty($args['class'])) ? $args['class'] : '';
@@ -65,11 +65,11 @@ class Base {
 		);
 	}
 
-	public function put_image($field, $args, $object = null ) {
+	public function put_image( string $field, array $args, ExternalObjectInterface $object = null ) {
 		echo $this->get_image($field, $args, $object);
 	}
 
-	public function get_set($field, $args = []) {
+	public function get_set( string $field, array $args = []) {
 		$method_name = "get_set_$field";
 	    $array = $this->$method_name($args);
 	    if ($array) {
@@ -78,7 +78,7 @@ class Base {
 		throw new \Exception("Set $field not found.");
 	}
 
-	public static function get_image_markup($id, $args) {
+	public static function get_image_markup(int $id, array $args) {
 		$sizes = $args['sizes'];
 		$class = $args['class'];
 		$wp_size = $args['wp_size'];
@@ -103,7 +103,7 @@ class Base {
 		return $output;
 	}
 
-	protected static function get_subsections_from_acf_repeater($field, $view_id, $class_name) {
+	protected static function get_subsections_from_acf_repeater( string $field, string $view_id, string $class_name) {
 	    $acf_array = get_field($field, $view_id);
 	    if($acf_array) {
 	      $sections = array_map(function($section) {

@@ -4,7 +4,7 @@ namespace DaveJToews\WPViews;
 
 class ViewFactory extends Factory {
 
-  public static function create($namespace = null) {
+  public static function create(string $namespace = null) {
 
     if (is_home()) {
       $queried_object = get_post_type_object('post');
