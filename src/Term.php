@@ -5,7 +5,7 @@ class Term extends Base {
 
   public $name;
 
-  public function __construct(WP_Term $queried) {
+  public function __construct(\WP_Term $queried) {
     $this->name = $queried->name;
   }
 
