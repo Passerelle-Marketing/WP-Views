@@ -8,7 +8,7 @@ class Archive extends View {
   public $page;
   public $title;
 
-  public function __construct(WP_Post_Type $queried) {
+  public function __construct(\WP_Post_Type $queried) {
     $this->type = $queried->name;
     $this->title = $queried->labels->name;
     $this->page = (get_query_var('paged')) ? get_query_var('paged') : 1;
