@@ -42,22 +42,25 @@ class Base {
 		$sizes = (!empty($args['sizes'])) ? $args['sizes'] : '';
 		$class = (!empty($args['class'])) ? $args['class'] : '';
 		$wp_size = (!empty($args['wp_size'])) ? $args['wp_size'] : '';
+    	$inline_svg = (isset($args['inline_svg'])) ? $args['inline_svg'] : true;
 
 		if ($object && method_exists($object, $method_name)) {
 			return $object->$method_name(
 				array(
 					'sizes'	=> $sizes,
 					'class' => $class,
-					'wp_size' => $wp_size
+					'wp_size' => $wp_size,
+          			'inline_svg' => $inline_svg
 				)
 			);
-		}		
+		}
 
 		return $this->$method_name(
 			array(
 				'sizes'	=> $sizes,
 				'class' => $class,
-				'wp_size' => $wp_size
+				'wp_size' => $wp_size,
+        		'inline_svg' => $inline_svg
 			)
 		);
 	}
@@ -79,10 +82,20 @@ class Base {
 		$sizes = $args['sizes'];
 		$class = $args['class'];
 		$wp_size = $args['wp_size'];
+	    $url = wp_get_attachment_image_url($id, $wp_size);
+	    $info = new \SplFileInfo($url);
+
+	    if ($args['inline_svg'] && $info->getExtension() === 'svg') {
+			$output = '<div ';
+			$output .= 'class="' . $class . '" >';
+			$output .= file_get_contents(get_attached_file($id));
+			$output .= '</div>';
+			return $output;
+	    }
 
 		$output = '<img ';
 		$output .= 'srcset="' . wp_get_attachment_image_srcset($id, $wp_size) . '" ';
-		$output .= 'src="' . wp_get_attachment_image_url($id, $wp_size) . '" ';
+		$output .= 'src="' . $url . '" ';
 		$output .= 'sizes="' . $sizes . '" ';
 		$output .= 'class="' . $class . '" ';
 		$output .= 'alt="' . get_post_meta($id, '_wp_attachment_image_alt', true) . '" ';
