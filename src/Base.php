@@ -78,7 +78,7 @@ class Base {
 		throw new \Exception("Set $field not found.");
 	}
 
-	public static function get_image_markup(int $id, array $args) {
+	public static function get_image_markup($id, array $args) {
 		$sizes = $args['sizes'];
 		$class = $args['class'];
 		$wp_size = $args['wp_size'];
