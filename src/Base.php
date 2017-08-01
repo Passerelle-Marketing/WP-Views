@@ -87,7 +87,7 @@ class Base {
 
 	    if ($args['inline_svg'] && $info->getExtension() === 'svg') {
 			$output = '<div ';
-			$output .= 'class="' . $class . '" >';
+			$output .= 'class="inline-svg-wrapper ' . $class . '" >';
 			$output .= file_get_contents(get_attached_file($id));
 			$output .= '</div>';
 			return $output;
