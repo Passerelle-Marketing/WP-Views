@@ -67,7 +67,7 @@ class Post extends View {
 	}
 
 	protected function get_date() {
-		return get_the_date('F j, Y', $this->id);
+		return get_the_date(null, $this->id);
 	}
 
 	protected function get_post_type() {
