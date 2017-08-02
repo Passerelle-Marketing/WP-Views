@@ -105,8 +105,4 @@ class Post extends View {
 		return $object->name;
 	}
 
-	protected function get_author() {
-		return get_post_field( 'post_author', $this->id );
-	}
-
 }
