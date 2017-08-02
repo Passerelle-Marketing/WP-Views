@@ -29,10 +29,19 @@ class Post extends View {
 		return get_permalink($this->id);
 	}
 
-	protected function get_parent() {
+	protected function get_parent($args, $object ) {
 		$post_type = $this->get_post_type();
 		$post_type_object = get_post_type_object($post_type);
-		return new Archive($post_type_object);
+
+		$namespace = '';
+
+		if ($object) {
+			$namespace = self::get_namespace($object) . '\\';
+		}
+
+		$classname = $namespace . 'Archive';
+
+		return new $classname($post_type_object);
 	}
 
 	protected function get_image_featured($args) {
@@ -83,6 +92,10 @@ class Post extends View {
 		$object = get_post_type_object( $post_type )->labels;
 
 		return $object->name;
+	}
+
+	protected function get_author() {
+		return get_post_field( 'post_author', $this->id );
 	}
 
 }

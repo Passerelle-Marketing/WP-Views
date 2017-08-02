@@ -18,9 +18,15 @@ class Archive extends View {
     return $this->title;
   }
 
-  protected function get_set_articles() {
+  protected function get_set_articles($args, $object) {
     global $wp_query;
 
-    return array_map(array('DaveJToews\WPViews\PostFactory', 'create'), $wp_query->posts);
+    return array_map(function($post) use ($object) {
+      $namespace = null;
+      if ($object) {
+        $namespace = self::get_namespace($object);
+      }
+      return PostFactory::create($post, $namespace);
+    }, $wp_query->posts);
   }
 }

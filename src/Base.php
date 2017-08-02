@@ -75,12 +75,13 @@ class Base {
 		if ($object && method_exists($object, $method_name)) {
 			$array = $object->$method_name($args);
 		} else {
-			$array = $this->$method_name($args);
+			$array = $this->$method_name($args, $object);
 		}
 
 	    if ($array) {
-	      return array_filter($array);
+	      return $array;
 	    }
+	    
 		throw new \Exception("Set $field not found.");
 	}
 
