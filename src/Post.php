@@ -6,7 +6,7 @@ class Post extends View {
 
 	public $id;
 
-	public function __construct($post) {
+	public function __construct(WP_Post $post) {
 		$this->id = $post->ID;
 	}
 
@@ -29,12 +29,11 @@ class Post extends View {
 		return get_permalink($this->id);
 	}
 
-	protected function get_parent($args, $object ) {
+	protected function get_parent($args, $object) {
 		$post_type = $this->get_post_type();
 		$post_type_object = get_post_type_object($post_type);
 
 		$namespace = '';
-
 		if ($object) {
 			$namespace = self::get_namespace($object) . '\\';
 		}
@@ -42,6 +41,18 @@ class Post extends View {
 		$classname = $namespace . 'Archive';
 
 		return new $classname($post_type_object);
+	}
+
+	protected function get_author($args, $object) {
+		$author_id = get_post_field( 'post_author', $this->id );
+		$author = get_userdata($author_id);
+
+		$namespace = null;
+		if ($object) {
+			$namespace = self::get_namespace($object);
+		}
+		return AuthorFactory::create($author, $namespace);
+
 	}
 
 	protected function get_image_featured($args) {
