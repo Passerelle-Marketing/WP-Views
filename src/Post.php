@@ -70,6 +70,10 @@ class Post extends View {
 		return get_the_date(null, $this->id);
 	}
 
+	protected function get_iso_date() {
+		return get_the_date('c', $this->id);
+	}
+
 	protected function get_post_type() {
 		return get_post_type($this->id);
 	}
