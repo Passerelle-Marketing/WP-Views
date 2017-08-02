@@ -81,7 +81,7 @@ class Base {
 	    if ($array) {
 	      return $array;
 	    }
-	    
+
 		throw new \Exception("Set $field not found.");
 	}
 
@@ -119,5 +119,13 @@ class Base {
 	      return $sections;
 	    }
 	   throw new \Exception("ACF field $field not found.");
+	}
+
+	protected static function get_namespace($object) {
+		$class_name = get_class($object);
+		$reflect = new \ReflectionClass($class_name);
+		$short_name = $reflect->getShortName();
+
+		return trim(str_replace($short_name, '', $class_name), '\\');
 	}
 }
