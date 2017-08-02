@@ -6,7 +6,7 @@ class Post extends View {
 
 	public $id;
 
-	public function __construct(WP_Post $post) {
+	public function __construct(\WP_Post $post) {
 		$this->id = $post->ID;
 	}
 
