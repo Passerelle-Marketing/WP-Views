@@ -4,7 +4,7 @@ namespace DaveJToews\WPViews;
 
 class View extends Base {
 
-  protected function get_parent() {
+  protected function get_parent($args, $object) {
     return false;
   }
 
