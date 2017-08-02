@@ -43,7 +43,7 @@ class Post extends View {
 		return new $classname($post_type_object);
 	}
 
-	protected function get_author($args, $object) {
+	protected function get_author($args = [], $object = null) {
 		$author_id = get_post_field( 'post_author', $this->id );
 		$author = get_userdata($author_id);
 
