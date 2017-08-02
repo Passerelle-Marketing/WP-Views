@@ -69,9 +69,15 @@ class Base {
 		echo $this->get_image($field, $args, $object);
 	}
 
-	public function get_set($field, array $args = []) {
+	public function get_set($field, array $args = [], ExternalObjectInterface $object = null) {
 		$method_name = "get_set_$field";
-	    $array = $this->$method_name($args);
+
+		if ($object && method_exists($object, $method_name)) {
+			$array = $object->$method_name($args);
+		} else {
+			$array = $this->$method_name($args);
+		}
+
 	    if ($array) {
 	      return array_filter($array);
 	    }
