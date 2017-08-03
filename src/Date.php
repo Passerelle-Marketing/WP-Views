@@ -2,7 +2,7 @@
 
 namespace DaveJToews\WPViews;
 
-class Error404 extends Base {
+class Date extends Base {
 	protected function get_title() {
 		return get_the_archive_title();
 	}
