@@ -38,6 +38,10 @@ class ViewFactory extends Factory {
       return new Error404();
     }
 
+    if (is_date()) {
+      return new Date();
+    }
+
     return false;
 
   }
