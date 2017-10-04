@@ -93,7 +93,7 @@ class Base {
 	    $info = new \SplFileInfo($url);
 
 	    if (
-	    	!empty($args['wp_size']) && 
+	    	//!empty($args['wp_size']) && // Unsure of reason for this condition
 	    	$args['inline_svg'] && 
 	    	$info->getExtension() === 'svg'
 	    ) {
