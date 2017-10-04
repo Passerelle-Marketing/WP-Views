@@ -85,10 +85,10 @@ class Base {
 		throw new \Exception("Set $field not found.");
 	}
 
-	public static function get_image_markup($id, array $args) {
-		$sizes = $args['sizes'];
-		$class = $args['class'];
-		$wp_size = $args['wp_size'];
+	public static function get_image_markup($id, array $args = []) {
+		$sizes = (!empty($args['sizes'])) ? $args['sizes'] : '';
+		$class = (!empty($args['class'])) ? $args['class'] : '';
+		$wp_size = (!empty($args['wp_size'])) ? $args['wp_size'] : '';
 	    $url = wp_get_attachment_image_url($id, $wp_size);
 	    $info = new \SplFileInfo($url);
 
