@@ -92,7 +92,11 @@ class Base {
 	    $url = wp_get_attachment_image_url($id, $wp_size);
 	    $info = new \SplFileInfo($url);
 
-	    if ($args['inline_svg'] && $info->getExtension() === 'svg') {
+	    if (
+	    	!empty($args['wp_size']) && 
+	    	$args['inline_svg'] && 
+	    	$info->getExtension() === 'svg'
+	    ) {
 			$output = '<div ';
 			$output .= 'class="inline-svg-wrapper ' . $class . '" >';
 			$output .= file_get_contents(get_attached_file($id));
