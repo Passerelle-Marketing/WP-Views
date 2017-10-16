@@ -78,7 +78,7 @@ class Base {
 			$array = $this->$method_name($args, $object);
 		}
 
-	    if ($array) {
+	    if (is_array($array)) {
 	      return $array;
 	    }
 
