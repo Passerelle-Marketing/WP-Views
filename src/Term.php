@@ -31,4 +31,7 @@ class Term extends Base {
     }, $wp_query->posts);
   }
 
+  protected function get_field($field, $id) {
+    return get_field($field, 'term_' . $id);
+  }
 }
