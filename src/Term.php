@@ -4,13 +4,19 @@ namespace DaveJToews\WPViews;
 class Term extends Base {
 
   public $name;
+  public $id;
 
-  public function __construct(\WP_Term $queried) {
-    $this->name = $queried->name;
+  public function __construct(\WP_Term $term) {
+    $this->name = $term->name;
+    $this->id = $term->term_id;
   }
 
   public function get_title() {
     return $this->name;
+  }
+
+  public function get_url() {
+    return get_term_link($this->id);
   }
 
   protected function get_set_articles($args, $object) {
