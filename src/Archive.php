@@ -29,4 +29,10 @@ class Archive extends View {
       return PostFactory::create($post, $namespace);
     }, $wp_query->posts);
   }
+
+  protected function get_set_taxonomies() {
+    return array_map(function($taxonomy) {
+      return new Taxonomy($taxonomy);
+    }, get_object_taxonomies($this->type, 'objects'));
+  }
 }
