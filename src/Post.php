@@ -106,7 +106,7 @@ class Post extends View {
 	}
 
 	protected function get_set_taxonomies($args, $object) {
-		return array_map(function($taxonomy) {
+		return array_map(function($taxonomy) use ($object) {
 			$namespace = null;
 			if ($object) {
 				$namespace = self::get_namespace($object);
