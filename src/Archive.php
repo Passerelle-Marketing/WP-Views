@@ -31,6 +31,8 @@ class Archive extends View {
   }
 
   protected function get_set_taxonomies() {
-    
+    return array_map(function($taxonomy) {
+      return new Taxonomy($taxonomy);
+    }, get_object_taxonomies($this->type, 'objects'));
   }
 }
