@@ -105,9 +105,13 @@ class Post extends View {
 		return $object->name;
 	}
 
-	protected function get_set_taxonomies() {
+	protected function get_set_taxonomies($args, $object) {
 		return array_map(function($taxonomy) {
-			return new Taxonomy($taxonomy);
+			$namespace = null;
+			if ($object) {
+				$namespace = self::get_namespace($object);
+			}
+			return TaxonomyFactory::create($taxonomy, $namespace);
 		}, get_object_taxonomies($this->type, 'objects'));
 	}
 }

@@ -18,8 +18,12 @@ class Taxonomy extends Base {
   protected function get_set_terms($args, $object) {
     $wp_terms = get_terms($this->name);
 
-    return array_map(function($term) {
-      return new Term($term);
+    return array_map(function($term) use ($object) {
+      $namespace = null;
+      if ($object) {
+        $namespace = self::get_namespace($object);
+      }
+      return TermFactory::create($term, $object);
     }, $wp_terms);
   }
 
