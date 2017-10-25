@@ -23,7 +23,7 @@ class Taxonomy extends Base {
       if ($object) {
         $namespace = self::get_namespace($object);
       }
-      return TermFactory::create($term, $object);
+      return TermFactory::create($term, $namespace);
     }, $wp_terms);
   }
 
