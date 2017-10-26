@@ -87,7 +87,7 @@ class Post extends View {
 	        $the_excerpt = implode(' ', $words);
 	    endif;
 
-	    $the_excerpt = ($the_excerpt) ? '<p class="excerpt">' . $the_excerpt . '</p>' : ''
+	    $the_excerpt = ($the_excerpt) ? '<p class="excerpt">' . $the_excerpt . '</p>' : '';
 
 	    return $the_excerpt;
 	}
