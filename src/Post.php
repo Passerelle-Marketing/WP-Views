@@ -65,12 +65,18 @@ class Post extends View {
 	}
 
 	protected function get_body() {
-		return apply_filters('the_content', get_post_field('post_content', $this->id));
+		$content = get_post_field('post_content', $this->id);
+
+		if ($content) {
+			return apply_filters('the_content', get_post_field('post_content', $this->id));
+		}
+		return '';
 	}
 
 	protected function get_excerpt() {
 	    $the_post = get_post($this->id);
-	    $the_excerpt = $the_post->post_content;
+	    $manual_excerpt = $the_post->post_excerpt;
+	    $the_excerpt = ($manual_excerpt)? $manual_excerpt : $the_post->post_content;
 	    $excerpt_length = apply_filters( 'excerpt_length', 55 );
 	    $the_excerpt = strip_tags(strip_shortcodes($the_excerpt));
 	    $words = explode(' ', $the_excerpt, $excerpt_length + 1);
@@ -81,7 +87,7 @@ class Post extends View {
 	        $the_excerpt = implode(' ', $words);
 	    endif;
 
-	    $the_excerpt = '<p class="excerpt">' . $the_excerpt . '</p>';
+	    $the_excerpt = ($the_excerpt) ? '<p class="excerpt">' . $the_excerpt . '</p>' : ''
 
 	    return $the_excerpt;
 	}
