@@ -19,15 +19,6 @@ class PostFactory extends Factory {
 		return self::get_namespaced_classname($post_string, $namespace);
 	}
 
-	private static function get_label_string($slug) {
-		$word_array = preg_split( "/[^a-zA-Z\d\s:]/", $slug );
-
-		$cap_array = array_map(function($word) {
-			return ucfirst($word);
-		}, $word_array);
-		return implode('', $cap_array);
-	}
-
 	private static function get_template_label($post_id) {
 
 		$template_slug = get_page_template_slug( $post_id );
