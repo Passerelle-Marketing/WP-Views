@@ -5,13 +5,18 @@ namespace DaveJToews\WPViews;
 class Factory {
 
     protected static function get_namespaced_classname($classname, $namespace) {
+        write_log(['get_namespaced namespace' => $namespace . '\\' . $classname]);
         if ($namespace && class_exists($namespace . '\\' . $classname)) {
             return '\\' . $namespace . '\\' . $classname;
-        } else {
+        } elseif ( class_exists(__NAMESPACE__ . '\\' . $classname)) {
             return __NAMESPACE__ . '\\' . $classname;
+        } else {
+            $or_in_namespace = ($namespace) ? "or in $namespace" : '';
+            $this_namespce = __NAMESPACE__;
+            throw new \Exception("Class $classname not found in $this_namespce $or_in_namespace");
         }
     }
-
+    
     protected static function get_label_string($slug) {
         $word_array = preg_split( "/[^a-zA-Z\d\s:]/", $slug );
 
