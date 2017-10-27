@@ -5,7 +5,6 @@ namespace DaveJToews\WPViews;
 class Factory {
 
     protected static function get_namespaced_classname($classname, $namespace) {
-        write_log(['get_namespaced namespace' => $namespace . '\\' . $classname]);
         if ($namespace && class_exists($namespace . '\\' . $classname)) {
             return '\\' . $namespace . '\\' . $classname;
         } elseif ( class_exists(__NAMESPACE__ . '\\' . $classname)) {
