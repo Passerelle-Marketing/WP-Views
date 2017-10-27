@@ -10,9 +10,13 @@ class Base {
 
 		if ($object && method_exists($object, $method_name)) {
 			return $object->$method_name();
+		} elseif (method_exists($this, $method_name)) {
+			return $this->$method_name();
+		} else {
+			$this_class = get_class($this);
+			$or_in_object = ($object) ? 'or in ' . get_class($object) : '' ; 
+			throw new \Exception("Method $method_name() not defined in $this_class $or_in_object");
 		}
-
-		return $this->$method_name();
 	}
 
 	public function has($field, ExternalObject $object = null) {
@@ -74,8 +78,12 @@ class Base {
 
 		if ($object && method_exists($object, $method_name)) {
 			$array = $object->$method_name($args);
-		} else {
+		} elseif (method_exists($this, $method_name)){
 			$array = $this->$method_name($args, $object);
+		} else {
+			$this_class = get_class($this);
+			$or_in_object = ($object) ? 'or in ' . get_class($object) : '' ; 
+			throw new \Exception("Method $method_name() not defined in $this_class $or_in_object");
 		}
 
 	    if (is_array($array)) {
