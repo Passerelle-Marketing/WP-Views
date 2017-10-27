@@ -28,15 +28,18 @@ class ViewFactory extends Factory {
     }
 
     if (is_search()) {
-      return new Search();
+      $view_class = self::get_namespaced_classname('Search', $namespace);
+      return new $view_class;
     }
 
     if (is_404()) {
-      return new Error404();
+      $view_class = self::get_namespaced_classname('Error404', $namespace);
+      return new $view_class;
     }
 
     if (is_date()) {
-      return new Date();
+      $view_class = self::get_namespaced_classname('Date', $namespace);
+      return new $view_class;
     }
 
     return false;
