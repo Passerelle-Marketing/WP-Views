@@ -39,4 +39,8 @@ class Archive extends View {
       return TaxonomyFactory::create($taxonomy, $namespace);
     }, get_object_taxonomies($this->type, 'objects'));
   }
+
+  protected function get_url() {
+    return get_post_type_archive_link($this->type);
+  }
 }
