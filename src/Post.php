@@ -33,14 +33,12 @@ class Post extends View {
 		$post_type = $this->get_post_type();
 		$post_type_object = get_post_type_object($post_type);
 
-		$namespace = '';
+		$namespace = null;
 		if ($object) {
 			$namespace = self::get_namespace($object) . '\\';
 		}
 
-		$classname = $namespace . 'Archive';
-
-		return new $classname($post_type_object);
+		return ArchiveFactory::create($post_type_object, $namespace);
 	}
 
 	protected function get_author($args = [], $object = null) {
