@@ -2,7 +2,7 @@
 
 namespace DaveJToews\WPViews;
 
-class Date extends Base {
+class Date extends View {
 	protected function get_title() {
 		return get_the_archive_title();
 	}

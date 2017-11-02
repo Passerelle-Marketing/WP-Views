@@ -2,7 +2,7 @@
 
 namespace DaveJToews\WPViews;
 
-class Author extends Base {
+class Author extends View {
 
 	public $id;
 

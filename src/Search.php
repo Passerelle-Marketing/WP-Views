@@ -2,7 +2,7 @@
 
 namespace DaveJToews\WPViews;
 
-class Search extends Base {
+class Search extends View {
 
 	protected function get_title() {
 		return sprintf(__('Search Results for %s', 'wp-views'), get_search_query());

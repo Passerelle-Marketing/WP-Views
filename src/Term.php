@@ -1,7 +1,7 @@
 <?php
 
 namespace DaveJToews\WPViews;
-class Term extends Base {
+class Term extends View {
 
   public $name;
   public $id;
