@@ -29,7 +29,7 @@ class Post extends View {
 		return get_permalink($this->id);
 	}
 
-	protected function get_parent($args, $object) {
+	protected function get_parent($args = [], $object = null) {
 		$post_type = $this->get_post_type();
 		$post_type_object = get_post_type_object($post_type);
 
