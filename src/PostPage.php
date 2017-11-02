@@ -4,7 +4,7 @@ namespace DaveJToews\WPViews;
 
 class PostPage extends Post {
 
-	protected function get_parent($args, $object) {
+	protected function get_parent($args = [], $object = null) {
 		$parent_id = wp_get_post_parent_id( $this->id );
 
 		if($parent_id) {
