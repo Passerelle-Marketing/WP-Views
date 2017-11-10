@@ -7,7 +7,7 @@ class Error404 extends View {
     public $query;
 
     public function __construct(\WP_Query $query) {
-        $this->query = $query;
+        $this->query = $query->query;
     } 
 
 	protected function get_title() {
