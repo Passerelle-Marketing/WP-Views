@@ -116,6 +116,6 @@ class Post extends View {
 				$namespace = self::get_namespace($object);
 			}
 			return TaxonomyFactory::create($taxonomy, $namespace);
-		}, get_object_taxonomies($this->type, 'objects'));
+		}, get_object_taxonomies($this->get_post_type(), 'objects'));
 	}
 }
