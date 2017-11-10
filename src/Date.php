@@ -3,6 +3,23 @@
 namespace DaveJToews\WPViews;
 
 class Date extends View {
+
+  public $year;
+  public $month;
+  public $day;
+
+  public function __construct(\WP_Query $query) {
+    if (isset($query->query['year'])) {
+      $this->year = $query->query['year'];
+    }
+    if (isset($query->query['monthnum'])) {
+      $this->month = $query->query['monthnum'];
+    }
+    if (isset($query->query['day'])) {
+      $this->day = $query->query['day'];
+    }
+  }
+
 	protected function get_title() {
 		return get_the_archive_title();
 	}

@@ -6,6 +6,8 @@ class ViewFactory extends Factory {
 
   public static function create($namespace = null) {
 
+    global $wp_query;
+
     if (is_home()) {
       $queried_object = get_post_type_object('post');
     } else {
@@ -27,23 +29,7 @@ class ViewFactory extends Factory {
       }
     }
 
-    if (is_search()) {
-      $view_class = self::get_namespaced_classname('Search', $namespace);
-      return new $view_class;
-    }
-
-    if (is_404()) {
-      $view_class = self::get_namespaced_classname('Error404', $namespace);
-      return new $view_class;
-    }
-
-    if (is_date()) {
-      $view_class = self::get_namespaced_classname('Date', $namespace);
-      return new $view_class;
-    }
-
-    return false;
+    return QueryFactory::create($wp_query, $namespace);
 
   }
-
 }

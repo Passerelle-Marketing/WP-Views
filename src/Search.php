@@ -4,6 +4,12 @@ namespace DaveJToews\WPViews;
 
 class Search extends View {
 
+	public $search;
+
+	public function __construct(\WP_Query $query) {
+		$this->search = $query->query['s'];
+	}
+
 	protected function get_title() {
 		return sprintf(__('Search Results for %s', 'wp-views'), get_search_query());
 	}
