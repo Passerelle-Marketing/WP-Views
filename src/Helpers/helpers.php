@@ -15,3 +15,13 @@ function get_string_between($string, $start, $end){
     $len = strpos($string, $end, $ini) - $ini;
     return substr($string, $ini, $len);
 }
+
+function is_body_paginated($content) {
+    return strpos( $content, '<!--nextpage-->' );
+}
+
+function get_body_pages($content) {
+    return explode('<!--nextpage-->', $content);
+}
+
+
