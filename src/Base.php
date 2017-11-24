@@ -41,6 +41,24 @@ class Base {
 		}
 	}
 
+	public function get_with($field, array $args = [], ExternalObject $object = null ) {
+		$method_name = "get_with_$field";
+
+		if ($object && method_exists($object, $method_name)) {
+			return $object->$method_name($args);
+		} elseif (method_exists($this, $method_name)) {
+			return $this->$method_name($args);
+		} else {
+			$this_class = get_class($this);
+			$or_in_object = ($object) ? 'or in ' . get_class($object) : '' ; 
+			throw new \Exception("Method $method_name() not defined in $this_class $or_in_object");
+		}		
+	}
+
+	public function put_with($field, array $args = [], ExternalObject $object = null ) {
+		echo $this->get_with($field, $args, $object);
+	}
+
 	public function get_image($field, array $args = [], ExternalObject $object = null ) {
 		$method_name = "get_image_$field";
 		$sizes = (!empty($args['sizes'])) ? $args['sizes'] : '';
