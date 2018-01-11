@@ -140,10 +140,10 @@ class Base {
 		return $output;
 	}
 
-	protected static function get_subsections_from_acf_repeater($field, $view_id, $class_name) {
+	public static function get_subsections_from_acf_repeater($field, $view_id, $class_name) {
 	    $acf_array = get_field($field, $view_id);
 	    if($acf_array) {
-	      $sections = array_map(function($section) {
+	      $sections = array_map(function($section) use ($class_name, $view_id) {
 	        return new $class_name($view_id, $section);
 	      }, $acf_array);
 	      return $sections;
