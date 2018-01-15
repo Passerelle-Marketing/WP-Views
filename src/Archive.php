@@ -19,7 +19,10 @@ class Archive extends View {
   }
 
   protected function get_set_articles($args, $object) {
-    $wp_query = new \WP_Query(['post_type' => $this->type]);
+    $wp_query = new \WP_Query([
+      'post_type' => $this->type,
+      'paged' => $this->page
+    ]);
 
     return array_map(function($post) use ($object) {
       $namespace = null;
