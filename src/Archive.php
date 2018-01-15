@@ -21,7 +21,7 @@ class Archive extends View {
   protected function get_set_articles($args, $object) {
     $wp_query = new \WP_Query([
       'post_type' => $this->type,
-      'paged' => $this->page
+      'posts_per_page' => -1
     ]);
 
     return array_map(function($post) use ($object) {
