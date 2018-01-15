@@ -62,9 +62,25 @@ An optional third parameter can be used to pass a field prefix. This is useful w
 
 #### Site Object
 
+The site class, which should be instantiated in all templates is the place to put methods to access content or data that is not attached to a particular view and may need to be accessed within many or all views. E.g. header and footer content.
+
 #### State Object
 
+The state class, like the site class should be instantiated in all templates. This is the place for methods to access content that may be contigent on something other than a post ID. Specifically, this class was created to deal with pagination.
+
 ### Methods
+
+Within templates most content will be accessed using two methods defined in the `Base` class: `get()`, and `put()`. Each of these takes a single argument: a string naming the field/content block being fetched. `get()` returns the value while `put()` returns it.
+
+Additional methods include:
+
+    * `has()`: for returning booleans.
+    * `get_set()`: for returning arrays. To distinguish directly returning content from returning sets of content. 
+    * `get_with()`: for returning values that are contingent upon data passed in. Such as in recursive functions. Created for use in breadcrumb.
+    * `get_image()`: for returning image markup, with configuration arguments. Should make use of `get_image_markup()`.
+    * `put_image()`: prints image markup.
+
+#### 
 
 #### `get`
 #### `put`
