@@ -80,14 +80,17 @@ Additional methods include:
     * `get_image()`: for returning image markup, with configuration arguments. Should make use of `get_image_markup()`.
     * `put_image()`: prints image markup.
 
-#### 
+You can allow new fields/content to be retrieved using these methods by defining new methods in your copies of the classes. In order to return a simple value, you would create a method like this.
 
-#### `get`
-#### `put`
+    protected function get_foo() {
+        return 'bar';
+    }
 
-#### `get_image`
+If this method was defined in a view class, it would be returned by calling `$view->get('foo')`. 
 
 ### ACF
+
+These classes were 
 
 ## What's missing
 
