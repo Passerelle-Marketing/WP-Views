@@ -90,8 +90,10 @@ If this method was defined in a view class, it would be returned by calling `$vi
 
 ### ACF
 
-These classes were 
+These classes were built with the idea in mind that much of the retrieved content and data would be structured and accessed through [Advanced Custom Fields](https://www.advancedcustomfields.com). As mentioned above the [SubSection](#subsection) class has features which are specifically tailored for use with ACF repeaters.
 
 ## What's missing
 
 ### Comments
+
+I almost never allow comments in WordPress sites I manage and as such have not had occasion to build out a `Comment` class or other pieces that might be used to make these tools work with comments.
