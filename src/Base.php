@@ -142,13 +142,13 @@ class Base {
 
 	public static function get_subsections_from_acf_repeater($field, $view_id, $class_name) {
 	    $acf_array = get_field($field, $view_id);
-	    if($acf_array) {
+	    if(is_array($acf_array)) {
 	      $sections = array_map(function($section) use ($class_name, $view_id) {
 	        return new $class_name($view_id, $section);
 	      }, $acf_array);
 	      return $sections;
 	    }
-	   throw new \Exception("ACF field $field not found.");
+	   return [];
 	}
 
 	protected static function get_namespace($object) {
