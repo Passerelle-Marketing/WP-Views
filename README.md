@@ -10,7 +10,7 @@ This was built to be installed as a [Composer](https://getcomposer.org) dependen
 
 ### Setup
 
-In order to extend WP Views' classes, a parallel set of classes must be created in your plugin or theme, using the same names but a unique [namespace](https://secure.php.net/manual/en/language.namespaces.php). Factory classes and the `ExternalObject` class should not be duplicated, but all other classes should be duplicated if you wish to use them in your project. Your `Base` class should extend `DaveJToews\WPViews\ExternalObject`, and all other classes should have an inheritance structure which parallels the structure wthin WP Views. E.g. your `View` class should extend your `Base` class just as WP Views `View` class extends WP Views `Base` class. Thus all of your classes will in turn inherit from `ExternalObject`.
+In order to extend WP Views' classes, a parallel set of classes must be created in your plugin or theme, using the same names but a unique [namespace](https://secure.php.net/manual/en/language.namespaces.php). Factory classes and the `ExternalObject` class should not be duplicated, but all other classes should be duplicated if you wish to use them in your project. Your `Base` class should extend `Passerelle\WPViews\ExternalObject`, and all other classes should have an inheritance structure which parallels the structure wthin WP Views. E.g. your `View` class should extend your `Base` class just as WP Views `View` class extends WP Views `Base` class. Thus all of your classes will in turn inherit from `ExternalObject`.
 
 `ExternalObject` contains magic methods that will allow method calls within your templates to access methods within WP Views or within your own classes. No methods need to be defined for your own classes, unless you wish to override a method from WP Views or add a new method.
 
@@ -19,7 +19,7 @@ In order to extend WP Views' classes, a parallel set of classes must be created 
 Each template should include the following code:
 
     $site = new YourUniqueNamespace\Site();
-    $view = DaveJToews\WPViews\ViewFactory::create('YourUniqueNamespace');
+    $view = Passerelle\WPViews\ViewFactory::create('YourUniqueNamespace');
     $state = new YourUniqueNamespace\State();
 
 `YourUniqueNamespace` should of couse be replaced with your unique namespace. The View Factory will return the appropriate view class for the current view. The `Site` class will contain all methods for accessing global site content. The `State` class will contain methods for accessing stateful data which are not appropriate to include in view classes.

@@ -1,6 +1,6 @@
 <?php
 
-namespace DaveJToews\WPViews;
+namespace Passerelle\WPViews;
 
 class PostPageFront extends PostPage {
 

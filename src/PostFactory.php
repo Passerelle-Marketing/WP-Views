@@ -1,7 +1,7 @@
 <?php
 
-namespace DaveJToews\WPViews;
-use DaveJToews\WPViews\Helpers;
+namespace Passerelle\WPViews;
+use Passerelle\WPViews\Helpers;
 
 class PostFactory extends Factory {
 

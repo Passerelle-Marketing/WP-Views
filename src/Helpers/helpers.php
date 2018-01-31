@@ -1,5 +1,5 @@
 <?php 
-namespace DaveJToews\WPViews\Helpers;
+namespace Passerelle\WPViews\Helpers;
 
 function can_be_string($value) {
     if (is_object($value) and method_exists($value, '__toString')) return true;

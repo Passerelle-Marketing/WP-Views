@@ -2,7 +2,7 @@
     "name": "davejtoews/wp-views",
     "autoload": {
         "psr-4" : {
-            "DaveJToews\\WPViews\\" : "src/"
+            "Passerelle\\WPViews\\" : "src/"
         },
         "files": [
         	"src/Helpers/helpers.php"

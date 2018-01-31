@@ -1,8 +1,8 @@
 <?php
 
-namespace DaveJToews\WPViews;
+namespace Passerelle\WPViews;
 
-Use DaveJToews\WPViews\Helpers;
+Use Passerelle\WPViews\Helpers;
 
 class Base {
 	public function get($field, ExternalObject $object = null) {

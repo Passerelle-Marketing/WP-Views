@@ -1,6 +1,6 @@
 <?php 
 
-namespace DaveJToews\WPViews;
+namespace Passerelle\WPViews;
 
 class ExternalObject {
   public $wp_views_object;
@@ -86,7 +86,7 @@ class ExternalObject {
   private static function get_mirrored_class($classname) {
     $reflect = new \ReflectionClass($classname);
     $classname = $reflect->getShortName();
-    return '\\DaveJToews\\WPViews\\' . $classname;
+    return '\\Passerelle\\WPViews\\' . $classname;
   }
 }
 
