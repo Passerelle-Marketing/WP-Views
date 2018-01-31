@@ -1,5 +1,5 @@
 {
-    "name": "davejtoews/wp-views",
+    "name": "passerelle/wp-views",
     "autoload": {
         "psr-4" : {
             "Passerelle\\WPViews\\" : "src/"
